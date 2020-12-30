@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "859093043262",
+    "firebase_url": "https://safepass-8bf08.firebaseio.com",
+    "project_id": "safepass-8bf08",
+    "storage_bucket": "safepass-8bf08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859093043262:android:e311830594193fce8f296f",
+        "android_client_info": {
+          "package_name": "com.safepass_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859093043262-51pul81u8gelesbhpm54obt1meq0ae9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2-kgGiiVBaTPJpX9Es-ciSubAWbmuINE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859093043262-51pul81u8gelesbhpm54obt1meq0ae9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
