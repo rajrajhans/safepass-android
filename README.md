@@ -18,6 +18,6 @@
   Android Client
 </h6>
 
-SafePass is a simple password management tool with a Web Client developed using ReactJS and an Android client developed using React Native. It uses Firebase as the backend. 
+SafePass is a simple password management tool with a Web Client developed using <b>ReactJS</b> and an Android client developed using <b>React Native</b>. It uses <b>Firebase</b> as the backend. 
 
 The Web Client is live and accessible [here](https://safepass.rajrajhans.com). Visit this repo for the source code for the Web Client.
