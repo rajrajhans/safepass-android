@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {SafeAreaView, StyleSheet, Text, StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import {NavigationContainer} from '@react-navigation/native';
 
 const App = () => {
   useEffect(() => {
@@ -8,14 +9,14 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <NavigationContainer>
       <StatusBar barStyle="dark-content" backgroundColor={'#3c0d99'} />
       <SafeAreaView style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>instructions</Text>
       </SafeAreaView>
-    </>
+    </NavigationContainer>
   );
 };
 
