@@ -4,7 +4,6 @@ import {SafeAreaView, StatusBar, StyleSheet, Text} from 'react-native';
 const Home = () => {
   return (
     <Fragment>
-      <StatusBar barStyle="dark-content" backgroundColor={'#3c0d99'} />
       <SafeAreaView style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
