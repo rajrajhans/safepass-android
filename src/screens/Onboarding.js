@@ -51,7 +51,7 @@ const OnboardingScreen = ({navigation}) => {
     <Onboarding
       pages={pages}
       showSkip={false}
-      onDone={() => navigation.replace('Home')}
+      onDone={() => navigation.replace('Login')}
       DoneButtonComponent={Done}
       NextButtonComponent={Next}
       DotComponent={Dots}
