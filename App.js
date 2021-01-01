@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <StackNav.Navigator>
+      <StackNav.Navigator screenOptions={{headerShown: false}}>
         <StackNav.Screen name={'Welcome'} component={OnboardingScreen} />
         <StackNav.Screen name={'Home'} component={Home} />
       </StackNav.Navigator>
