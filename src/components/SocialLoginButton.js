@@ -4,13 +4,7 @@ import {windowHeight} from '../utils/deviceDimensions';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const SocialButton = ({
-  buttonTitle,
-  btnType,
-  color,
-  backgroundColor,
-  ...rest
-}) => {
+const SocialButton = ({btnType, color, backgroundColor, ...rest}) => {
   return (
     <TouchableOpacity
       style={[styles.buttonContainer, {backgroundColor: backgroundColor}]}
@@ -19,12 +13,9 @@ const SocialButton = ({
         <FontAwesome
           name={btnType}
           style={styles.icon}
-          size={22}
+          size={25}
           color={color}
         />
-      </View>
-      <View style={styles.btnTxtWrapper}>
-        <Text style={[styles.buttonText, {color: color}]}>{buttonTitle}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -35,11 +26,11 @@ export default SocialButton;
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
-    width: '100%',
+    marginHorizontal: 10,
     height: windowHeight / 15,
     padding: 10,
     flexDirection: 'row',
-    borderRadius: 3,
+    borderRadius: 30,
   },
   iconWrapper: {
     width: 30,
