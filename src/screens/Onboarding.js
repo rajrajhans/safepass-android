@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from '../styles/Onboarding';
-import {brandColor as brandColor} from '../app.json';
+import {brandColor as brandColor} from '../../app.json';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Button} from 'react-native-elements';
 

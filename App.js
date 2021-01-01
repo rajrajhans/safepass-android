@@ -3,8 +3,8 @@ import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createStackNavigator} from '@react-navigation/stack';
-import Home from './screens/Home';
-import OnboardingScreen from './screens/Onboarding';
+import Home from './src/screens/Home';
+import OnboardingScreen from './src/screens/Onboarding';
 
 const StackNav = createStackNavigator();
 
