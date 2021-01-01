@@ -1,9 +1,8 @@
 import {StyleSheet} from 'react-native';
-import {brandColor as brandColor} from '../app.json';
 
 const styles = StyleSheet.create({
   button: {
-    marginHorizontal: 10,
+    marginRight: 10,
   },
   text: {
     fontSize: 16,

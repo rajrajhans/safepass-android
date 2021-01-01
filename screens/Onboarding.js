@@ -3,8 +3,8 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from '../styles/Onboarding';
 import {brandColor as brandColor} from '../app.json';
-
-const isLight = 'ok';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {Button} from 'react-native-elements';
 
 const pages = [
   {
@@ -66,15 +66,33 @@ const Dots = ({selected}) => {
 };
 
 const Next = ({...props}) => (
-  <TouchableOpacity style={styles.button} {...props}>
-    <Text style={styles.text}>Next</Text>
-  </TouchableOpacity>
+  <View style={styles.button} s>
+    <Button
+      icon={<Icon name="chevron-right" size={22} color="white" />}
+      type={'clear'}
+      {...props}
+    />
+  </View>
 );
 
 const Done = ({...props}) => (
-  <TouchableOpacity style={styles.button} {...props}>
-    <Text style={styles.text}>Done</Text>
-  </TouchableOpacity>
+  <View style={styles.button} s>
+    <Button
+      icon={<Icon name="check" size={22} color="white" />}
+      type={'clear'}
+      {...props}
+    />
+  </View>
+);
+
+const getStarted = ({...props}) => (
+  <View style={styles.button} s>
+    <Button
+      icon={<Icon name="check" size={22} color="white" />}
+      type={'clear'}
+      {...props}
+    />
+  </View>
 );
 
 export default OnboardingScreen;
