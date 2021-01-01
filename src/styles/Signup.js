@@ -28,11 +28,7 @@ const styles = StyleSheet.create({
   navButton: {
     marginTop: 15,
   },
-  forgotButton: {
-    marginTop: 15,
-    marginBottom: 35,
-  },
-  signupLink: {
+  LoginLink: {
     marginTop: 0,
     paddingVertical: 20,
     width: '100%',

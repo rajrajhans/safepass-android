@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styles from '../styles/Login';
+import styles from '../styles/Signup';
 import {
   Image,
   SafeAreaView,
@@ -39,14 +39,17 @@ const Login = ({navigation}) => {
           secureTextEntry={true}
         />
 
-        <FormButton buttonTitle={'Sign In'} />
+        <FormInput
+          labelValue={password}
+          placeholderText={'Confirm Password'}
+          iconType={'lock'}
+          secureTextEntry={true}
+        />
 
-        <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
-          <Text style={styles.navButtonText}>Forgot Password?</Text>
-        </TouchableOpacity>
+        <FormButton buttonTitle={'Sign Up'} />
 
         <View style={{marginVertical: 50}}>
-          <Text style={{textAlign: 'center'}}>You can also sign in with:</Text>
+          <Text style={{textAlign: 'center'}}>You can also sign up with:</Text>
           <View style={{flexDirection: 'row'}}>
             <SocialButton
               btnType={'google'}
@@ -70,12 +73,12 @@ const Login = ({navigation}) => {
         </View>
 
         <TouchableOpacity
-          style={styles.signupLink}
+          style={styles.LoginLink}
           onPress={() => {
-            navigation.navigate('Signup');
+            navigation.navigate('Login');
           }}>
           <Text style={styles.navButtonText}>
-            Don't have an account? Create one!
+            Already have an account? Log In!
           </Text>
         </TouchableOpacity>
       </ScrollView>

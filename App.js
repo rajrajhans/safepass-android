@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from './src/screens/Home';
 import OnboardingScreen from './src/screens/Onboarding';
 import Login from './src/screens/Login';
+import Signup from './src/screens/Signup';
 
 const StackNav = createStackNavigator();
 
@@ -33,6 +34,7 @@ const App = () => {
         <StackNav.Navigator screenOptions={{headerShown: false}}>
           <StackNav.Screen name={'Welcome'} component={OnboardingScreen} />
           <StackNav.Screen name={'Login'} component={Login} />
+          <StackNav.Screen name={'Signup'} component={Signup} />
         </StackNav.Navigator>
       </NavigationContainer>
     );
@@ -41,6 +43,7 @@ const App = () => {
       <NavigationContainer>
         <StackNav.Navigator screenOptions={{headerShown: false}}>
           <StackNav.Screen name={'Login'} component={Login} />
+          <StackNav.Screen name={'Signup'} component={Signup} />
         </StackNav.Navigator>
       </NavigationContainer>
     );
