@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from './src/screens/Home';
 import OnboardingScreen from './src/screens/Onboarding';
+import Login from './src/screens/Login';
 
 const StackNav = createStackNavigator();
 
@@ -31,7 +32,7 @@ const App = () => {
       <NavigationContainer>
         <StackNav.Navigator screenOptions={{headerShown: false}}>
           <StackNav.Screen name={'Welcome'} component={OnboardingScreen} />
-          <StackNav.Screen name={'Home'} component={Home} />
+          <StackNav.Screen name={'Login'} component={Login} />
         </StackNav.Navigator>
       </NavigationContainer>
     );
@@ -39,7 +40,7 @@ const App = () => {
     return (
       <NavigationContainer>
         <StackNav.Navigator screenOptions={{headerShown: false}}>
-          <StackNav.Screen name={'Home'} component={Home} />
+          <StackNav.Screen name={'Login'} component={Login} />
         </StackNav.Navigator>
       </NavigationContainer>
     );
