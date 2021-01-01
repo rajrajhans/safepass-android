@@ -71,15 +71,21 @@ const Next = ({...props}) => (
       icon={<Icon name="chevron-right" size={22} color="white" />}
       type={'clear'}
       {...props}
+      buttonStyle={{padding: 20}}
     />
   </View>
 );
 
 const Done = ({...props}) => (
-  <View style={styles.button} s>
+  <View style={[styles.button]} s>
     <Button
-      icon={<Icon name="check" size={22} color="white" />}
+      icon={
+        <Icon name="check" size={22} color="white" style={{marginRight: 8}} />
+      }
+      title={'Done'}
       type={'clear'}
+      titleStyle={{color: '#fff'}}
+      buttonStyle={{paddingVertical: 20}}
       {...props}
     />
   </View>
