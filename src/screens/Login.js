@@ -4,6 +4,7 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -35,6 +36,11 @@ const Login = ({navigation}) => {
 
   return (
     <SafeAreaView>
+      <StatusBar
+        backgroundColor={'white'}
+        barStyle={'light-content'}
+        animated={true}
+      />
       <ScrollView
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps={'handled'}>

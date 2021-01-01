@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, StatusBar} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from '../styles/Onboarding';
 import {brandColor as brandColor} from '../../app.json';
@@ -48,16 +48,23 @@ const pages = [
 
 const OnboardingScreen = ({navigation}) => {
   return (
-    <Onboarding
-      pages={pages}
-      showSkip={false}
-      onDone={() => navigation.replace('Login')}
-      DoneButtonComponent={Done}
-      NextButtonComponent={Next}
-      DotComponent={Dots}
-      isLight={true}
-      transitionAnimationDuration={150}
-    />
+    <>
+      <StatusBar
+        backgroundColor={brandColor}
+        barStyle={'light-content'}
+        animated={true}
+      />
+      <Onboarding
+        pages={pages}
+        showSkip={false}
+        onDone={() => navigation.replace('Login')}
+        DoneButtonComponent={Done}
+        NextButtonComponent={Next}
+        DotComponent={Dots}
+        isLight={true}
+        transitionAnimationDuration={150}
+      />
+    </>
   );
 };
 
