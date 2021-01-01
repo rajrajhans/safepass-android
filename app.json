@@ -1,4 +1,5 @@
 {
   "name": "safepass_android",
-  "displayName": "SafePass"
+  "displayName": "SafePass",
+  "brandColor": "#3c0d99"
 }

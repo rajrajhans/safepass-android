@@ -1,25 +1,48 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
+import styles from '../styles/Onboarding';
+import {brandColor as brandColor} from '../app.json';
+
+const isLight = 'ok';
 
 const pages = [
   {
-    backgroundColor: '#fff',
-    image: <Image source={require('../assets/logo.png')} />,
+    backgroundColor: brandColor,
+    image: (
+      <Image
+        style={{width: 385, height: 266}}
+        source={require('../assets/intro.png')}
+      />
+    ),
     title: 'Welcome To SafePass',
-    subtitle: 'Yes',
+    subtitle:
+      'Store your passwords securely on the cloud and access them on-the-go!',
+    isBgDark: 0,
   },
   {
-    backgroundColor: '#000',
-    image: <Image source={require('../assets/logo.png')} />,
-    title: 'Welcome To SafePass 2',
-    subtitle: 'No',
+    backgroundColor: '#4605c6',
+    image: (
+      <Image
+        style={{width: 298, height: 266}}
+        source={require('../assets/secure.png')}
+      />
+    ),
+    title: 'Secure Password Management',
+    subtitle:
+      'SafePass encrypts your data using the Industry Standard AES Algorithm.',
   },
   {
-    backgroundColor: '#570e09',
-    image: <Image source={require('../assets/logo.png')} />,
-    title: 'Welcome To SafePass 3',
-    subtitle: 'Maybe',
+    backgroundColor: '#5509e5',
+    image: (
+      <Image
+        style={{width: 350, height: 266}}
+        source={require('../assets/open_source.png')}
+      />
+    ),
+    title: 'Open Source & Customizable',
+    subtitle:
+      'Want to customize it to your needs? No Problem! The source code is available on GitHub.',
   },
 ];
 
@@ -27,29 +50,20 @@ const OnboardingScreen = ({navigation}) => {
   return (
     <Onboarding
       pages={pages}
-      onSkip={() => navigation.replace('Home')}
+      showSkip={false}
       onDone={() => navigation.replace('Home')}
-      SkipButtonComponent={Skip}
       DoneButtonComponent={Done}
       NextButtonComponent={Next}
       DotComponent={Dots}
+      isLight={true}
+      transitionAnimationDuration={150}
     />
   );
 };
 
 const Dots = ({selected}) => {
-  let backgroundColor;
-
-  backgroundColor = selected ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.3)';
-
-  return <View style={[styles.dot, backgroundColor]} />;
+  return <View style={[styles.dots, selected ? styles.selectedDot : null]} />;
 };
-
-const Skip = ({...props}) => (
-  <TouchableOpacity style={styles.button} {...props}>
-    <Text style={styles.text}>Skip</Text>
-  </TouchableOpacity>
-);
 
 const Next = ({...props}) => (
   <TouchableOpacity style={styles.button} {...props}>
@@ -62,19 +76,5 @@ const Done = ({...props}) => (
     <Text style={styles.text}>Done</Text>
   </TouchableOpacity>
 );
-
-const styles = StyleSheet.create({
-  button: {
-    marginHorizontal: 10,
-  },
-  text: {
-    fontSize: 16,
-  },
-  dots: {
-    width: 6,
-    height: 6,
-    marginHorizontal: 3,
-  },
-});
 
 export default OnboardingScreen;
