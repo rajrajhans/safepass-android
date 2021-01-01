@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from '../styles/Login';
 import {
   Image,
@@ -12,34 +12,54 @@ import FormInput from '../components/FormInput';
 import SocialButton from '../components/SocialLoginButton';
 import {Text} from 'react-native-elements';
 import Logo from '../assets/logo_hq.png';
+import AuthContext from '../components/AuthProvider';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [emailPlaceholder, setEmailPlaceholder] = useState('Email');
+  const [passwordPlaceholder, setPasswordPlaceholder] = useState('Password');
+
+  const {login} = useContext(AuthContext);
+
+  const handleLogin = () => {
+    if (email !== '' && password !== '') {
+      console.log('login started');
+      login(email, password).then(() => console.log('login done'));
+    } else {
+      setPasswordPlaceholder('Password cannot be empty');
+      setEmailPlaceholder('Email cannot be empty');
+    }
+  };
+
   return (
     <SafeAreaView>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps={'handled'}>
         <Image source={Logo} style={styles.logo} />
         <Text style={styles.logoText}>SafePass</Text>
 
         <FormInput
           labelValue={email}
-          placeholderText={'Email'}
+          placeholderText={emailPlaceholder}
           iconType={'user'}
           keyboardType={'email-address'}
           autoCapitaliza={'none'}
           autoCorrect={false}
+          onChangeText={(userEmail) => setEmail(userEmail)}
         />
 
         <FormInput
           labelValue={password}
-          placeholderText={'Password'}
+          placeholderText={passwordPlaceholder}
           iconType={'lock'}
           secureTextEntry={true}
+          onChangeText={(userPwd) => setPassword(userPwd)}
         />
 
-        <FormButton buttonTitle={'Sign In'} />
+        <FormButton buttonTitle={'Sign In'} onPress={handleLogin} />
 
         <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
           <Text style={styles.navButtonText}>Forgot Password?</Text>

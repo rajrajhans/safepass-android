@@ -19,6 +19,7 @@ const App = () => {
 
   const handleAuthStateChange = (user) => {
     setCurrentUser(user);
+    console.log('current user set', user);
     if (isInitializing) setIsInitializing(false);
   };
 
@@ -52,6 +53,7 @@ const App = () => {
           <StackNav.Screen name={'Welcome'} component={OnboardingScreen} />
           <StackNav.Screen name={'Login'} component={Login} />
           <StackNav.Screen name={'Signup'} component={Signup} />
+          <StackNav.Screen name={'Home'} component={Home} />
         </StackNav.Navigator>
       </NavigationContainer>
     );
