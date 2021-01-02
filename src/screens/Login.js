@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from '../styles/Login';
 import {
   Image,
@@ -14,6 +14,7 @@ import SocialButton from '../components/SocialLoginButton';
 import {Text} from 'react-native-elements';
 import Logo from '../assets/logo_hq.png';
 import AuthContext from '../components/AuthProvider';
+import {LoadingContext} from '../components/LoadingProvider';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -23,6 +24,9 @@ const Login = ({navigation}) => {
   const [passwordPlaceholder, setPasswordPlaceholder] = useState('Password');
 
   const {login} = useContext(AuthContext);
+  const {setStatusBarBg} = useContext(LoadingContext);
+
+  useEffect(() => setStatusBarBg('white'), []);
 
   const handleLogin = () => {
     if (email !== '' && password !== '') {
@@ -36,11 +40,6 @@ const Login = ({navigation}) => {
 
   return (
     <SafeAreaView>
-      <StatusBar
-        backgroundColor={'white'}
-        barStyle={'light-content'}
-        animated={true}
-      />
       <ScrollView
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps={'handled'}>
