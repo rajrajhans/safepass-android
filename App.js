@@ -9,6 +9,7 @@ import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import AuthContext from './src/components/AuthProvider';
 import auth from '@react-native-firebase/auth';
+import LoadingScreen from './src/screens/LoadingScreen';
 
 const StackNav = createStackNavigator();
 
@@ -42,8 +43,7 @@ const App = () => {
     return subscriber;
   }, []);
 
-  if (isInitializing) return null;
-  //todo: show maybe a loading screen here
+  if (isInitializing) return <LoadingScreen />;
   else if (isFirstLaunch == null) {
     return null;
   } else if (isFirstLaunch === true) {

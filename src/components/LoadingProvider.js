@@ -7,7 +7,7 @@ import Animated from 'react-native-reanimated';
 export const LoadingContext = createContext();
 
 export const LoadingProvider = ({children}) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [statusBarBg, setStatusBarBg] = useState('#3c0d99');
 
   return (
