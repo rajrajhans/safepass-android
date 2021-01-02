@@ -45,7 +45,7 @@ const App = () => {
 
   if (isInitializing) return <LoadingScreen />;
   else if (isFirstLaunch == null) {
-    return null;
+    return <LoadingScreen />;
   } else if (isFirstLaunch === true) {
     return (
       <NavigationContainer>
