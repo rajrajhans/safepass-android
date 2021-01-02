@@ -1,7 +1,8 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import {Text} from 'react-native-elements';
-import {StatusBar, View} from 'react-native';
+import {Easing, StatusBar, View} from 'react-native';
 import styles from '../styles/Loading';
+import Animated from 'react-native-reanimated';
 
 export const LoadingContext = createContext();
 
@@ -14,13 +15,13 @@ export const LoadingProvider = ({children}) => {
       {isLoading ? (
         <>
           <StatusBar
-            backgroundColor={'rgba(0, 0, 0, 0.2)'}
+            backgroundColor={'rgba(0, 0, 0, 0.4)'}
             barStyle={'light-content'}
             animated={true}
           />
           {children}
           <View style={styles.container}>
-            <Text>hello</Text>
+            <LogoImage />
           </View>
         </>
       ) : (
@@ -34,5 +35,51 @@ export const LoadingProvider = ({children}) => {
         </>
       )}
     </LoadingContext.Provider>
+  );
+};
+
+const LogoImage = () => {
+  const height = Animated.useValue(100);
+  const width = Animated.useValue(100);
+
+  useEffect(() => {
+    grow();
+  }, []);
+
+  const grow = () => {
+    Animated.timing(width, {
+      toValue: 130,
+      duration: 500,
+      easing: Easing.linear,
+    }).start();
+    Animated.timing(height, {
+      toValue: 130,
+      duration: 500,
+      easing: Easing.linear,
+    }).start(() => {
+      shrink();
+    });
+  };
+
+  const shrink = () => {
+    Animated.timing(width, {
+      toValue: 100,
+      duration: 500,
+      easing: Easing.linear,
+    }).start();
+    Animated.timing(height, {
+      toValue: 100,
+      duration: 500,
+      easing: Easing.linear,
+    }).start(() => {
+      grow();
+    });
+  };
+
+  return (
+    <Animated.Image
+      source={require('../assets/logo.png')}
+      style={{width: width, height: height, opacity: 0.5}}
+    />
   );
 };
