@@ -1,10 +1,18 @@
 import React, {Fragment, useContext} from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import AuthContext from '../components/AuthProvider';
-import {Text} from 'react-native-elements';
+import {Button, Text} from 'react-native-elements';
+import {LoadingContext} from '../components/LoadingProvider';
 
 const Home = () => {
-  const {currentUser} = useContext(AuthContext);
+  const {currentUser, signOut} = useContext(AuthContext);
+
+  const {setIsLoading} = useContext(LoadingContext);
+  async function handleSignOut() {
+    setIsLoading(true);
+    await signOut();
+    setIsLoading(false);
+  }
 
   return (
     <Fragment>
@@ -12,6 +20,7 @@ const Home = () => {
         <Text h1 style={{color: 'white'}}>
           Hi, {currentUser.displayName}
         </Text>
+        <Button title={'Sign Out'} onPress={handleSignOut} />
         <Text style={styles.welcome}>Welcome to React Native!</Text>
       </SafeAreaView>
     </Fragment>

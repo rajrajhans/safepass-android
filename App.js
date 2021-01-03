@@ -45,6 +45,7 @@ const App = () => {
   }, []);
 
   if (isInitializing) return <LoadingScreen />;
+  // If app is still establishing connection to Firebase
   else if (isFirstLaunch == null) {
     return <LoadingScreen />;
   } else if (isFirstLaunch === true) {
