@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from '../styles/Signup';
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -12,24 +13,104 @@ import FormInput from '../components/FormInput';
 import SocialButton from '../components/SocialLoginButton';
 import {Text} from 'react-native-elements';
 import Logo from '../assets/logo_hq.png';
+import {LoadingContext} from '../components/LoadingProvider';
+import AuthContext from '../components/AuthProvider';
+import {getLoginErrorMessage} from '../utils/errorHandlers';
 
-const Login = ({navigation}) => {
+const Signup = ({navigation}) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+
+  const {setIsLoading} = useContext(LoadingContext);
+  const {signUp} = useContext(AuthContext);
+
+  const resetSignupForm = () => {
+    setEmail('');
+    setPassword('');
+    setPasswordConfirmation('');
+  };
+
+  const displayAlert = (title, message) =>
+    Alert.alert(title, message, [{text: 'OK', style: 'positive'}]);
+
+  const handleSignUp = async () => {
+    if (
+      email !== '' &&
+      password !== '' &&
+      passwordConfirmation !== '' &&
+      name !== ''
+    ) {
+      if (password === passwordConfirmation) {
+        setIsLoading(true);
+        const isSignUpSuccessful = signUp(email, password, name);
+        setIsLoading(false);
+        if (isSignUpSuccessful) {
+          navigation.navigate('Home');
+        } else {
+          resetSignupForm();
+        }
+      } else {
+        displayAlert(
+          'Passwords do not match',
+          'Please make sure you have entered the same password in "Confirm Password"',
+        );
+        resetSignupForm();
+      }
+    } else {
+      if (!email && !password && !passwordConfirmation)
+        displayAlert(
+          'Fields cannot be empty',
+          'Please make sure you have entered all the information',
+        );
+      else if (!email)
+        displayAlert(
+          'Email cannot be empty',
+          'Please make sure you have entered a valid email',
+        );
+      else if (!password || !passwordConfirmation)
+        displayAlert(
+          'Password cannot be empty',
+          'Please make sure you have entered valid password',
+        );
+      else
+        displayAlert(
+          'Name cannot be empty',
+          'Please make sure you have entered a valid name',
+        );
+    }
+  };
 
   return (
     <SafeAreaView>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps={'handled'}>
         <Image source={Logo} style={styles.logo} />
         <Text style={styles.logoText}>SafePass</Text>
 
         <FormInput
+          labelValue={name}
+          placeholderText={'Name'}
+          iconType={'user'}
+          keyboardType={'default'}
+          autoCorrect={false}
+          onChangeText={(name) => {
+            setName(name);
+          }}
+        />
+
+        <FormInput
           labelValue={email}
           placeholderText={'Email'}
-          iconType={'user'}
+          iconType={'mail'}
           keyboardType={'email-address'}
-          autoCapitaliza={'none'}
+          autoCapitalize={'none'}
           autoCorrect={false}
+          onChangeText={(email) => {
+            setEmail(email);
+          }}
         />
 
         <FormInput
@@ -37,16 +118,20 @@ const Login = ({navigation}) => {
           placeholderText={'Password'}
           iconType={'lock'}
           secureTextEntry={true}
+          onChangeText={(password) => {
+            setPassword(password);
+          }}
         />
 
         <FormInput
-          labelValue={password}
+          labelValue={passwordConfirmation}
           placeholderText={'Confirm Password'}
           iconType={'lock'}
           secureTextEntry={true}
+          onChangeText={(confirmPwd) => setPasswordConfirmation(confirmPwd)}
         />
 
-        <FormButton buttonTitle={'Sign Up'} />
+        <FormButton buttonTitle={'Sign Up'} onPress={handleSignUp} />
 
         <View style={{marginVertical: 50}}>
           <Text style={{textAlign: 'center'}}>You can also sign up with:</Text>
@@ -86,4 +171,4 @@ const Login = ({navigation}) => {
   );
 };
 
-export default Login;
+export default Signup;
