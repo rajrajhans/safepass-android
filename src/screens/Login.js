@@ -38,9 +38,7 @@ const Login = ({navigation}) => {
       setIsLoading(true);
       const isLoginSuccessful = await login(email, password);
       setIsLoading(false);
-      if (isLoginSuccessful) {
-        navigation.navigate('Home');
-      } else {
+      if (!isLoginSuccessful) {
         resetLoginForm();
       }
     } else {
