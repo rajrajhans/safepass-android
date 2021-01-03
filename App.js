@@ -10,8 +10,9 @@ import Signup from './src/screens/Signup';
 import AuthContext from './src/components/AuthProvider';
 import auth from '@react-native-firebase/auth';
 import LoadingScreen from './src/screens/LoadingScreen';
-
-const StackNav = createStackNavigator();
+import FirstLaunchNavStack from './src/components/navigation/FirstLaunchNavStack';
+import NotLoggedInNavStack from './src/components/navigation/NotLoggedInNavStack';
+import LoggedInNavStack from './src/components/navigation/LoggedInNavStack';
 
 const App = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
@@ -47,26 +48,13 @@ const App = () => {
   else if (isFirstLaunch == null) {
     return <LoadingScreen />;
   } else if (isFirstLaunch === true) {
-    return (
-      <NavigationContainer>
-        <StackNav.Navigator screenOptions={{headerShown: false}}>
-          <StackNav.Screen name={'Welcome'} component={OnboardingScreen} />
-          <StackNav.Screen name={'Login'} component={Login} />
-          <StackNav.Screen name={'Signup'} component={Signup} />
-          <StackNav.Screen name={'Home'} component={Home} />
-        </StackNav.Navigator>
-      </NavigationContainer>
-    );
+    return <FirstLaunchNavStack />;
   } else {
-    return (
-      <NavigationContainer>
-        <StackNav.Navigator screenOptions={{headerShown: false}}>
-          <StackNav.Screen name={'Login'} component={Login} />
-          <StackNav.Screen name={'Signup'} component={Signup} />
-          <StackNav.Screen name={'Home'} component={Home} />
-        </StackNav.Navigator>
-      </NavigationContainer>
-    );
+    if (currentUser) {
+      return <LoggedInNavStack />;
+    } else {
+      return <NotLoggedInNavStack />;
+    }
   }
 };
 

@@ -1,13 +1,18 @@
-import React, {Fragment} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, Text} from 'react-native';
+import React, {Fragment, useContext} from 'react';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import AuthContext from '../components/AuthProvider';
+import {Text} from 'react-native-elements';
 
 const Home = () => {
+  const {currentUser} = useContext(AuthContext);
+
   return (
     <Fragment>
       <SafeAreaView style={styles.container}>
+        <Text h1 style={{color: 'white'}}>
+          Hi, {currentUser.displayName}
+        </Text>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>instructions</Text>
       </SafeAreaView>
     </Fragment>
   );
