@@ -49,7 +49,11 @@ const App = () => {
   else if (isFirstLaunch == null) {
     return <LoadingScreen />;
   } else if (isFirstLaunch === true) {
-    return <FirstLaunchNavStack />;
+    if (currentUser) {
+      return <LoggedInNavStack />;
+    } else {
+      return <FirstLaunchNavStack />;
+    }
   } else {
     if (currentUser) {
       return <LoggedInNavStack />;
