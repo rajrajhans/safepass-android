@@ -4,18 +4,10 @@
     <item
             android:drawable="@color/brandColor"/>
 
-    <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="24dp"
-            android:src="@mipmap/splash_logo"
-    />
-
-    <ImageView
-            android:layout_width="500dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="24dp"
-            android:src="@mipmap/splash_text"
-    />
+    <item
+            android:width="250dp"
+            android:height="250dp"
+            android:drawable="@mipmap/splash_logo"
+            android:gravity="center" />
 
 </layer-list>
