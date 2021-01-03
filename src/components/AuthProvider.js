@@ -1,5 +1,7 @@
 import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
+import {Alert} from 'react-native';
+import {getLoginErrorMessage} from '../utils/errorHandlers';
 
 const AuthContext = createContext();
 export default AuthContext;
@@ -10,8 +12,12 @@ export const AuthProvider = ({children}) => {
   async function login(email, password) {
     try {
       await auth().signInWithEmailAndPassword(email, password);
+      return 1;
     } catch (e) {
-      console.log(e);
+      Alert.alert('Authentication Error', getLoginErrorMessage(e.code), [
+        {text: 'OK', style: 'cancel'},
+      ]);
+      return 0;
     }
   }
 

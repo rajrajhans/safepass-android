@@ -24,14 +24,25 @@ const Login = ({navigation}) => {
   const [passwordPlaceholder, setPasswordPlaceholder] = useState('Password');
 
   const {login} = useContext(AuthContext);
-  const {setStatusBarBg} = useContext(LoadingContext);
+  const {setIsLoading, setStatusBarBg} = useContext(LoadingContext);
 
   useEffect(() => setStatusBarBg('white'), []);
 
-  const handleLogin = () => {
+  const resetLoginForm = () => {
+    setEmail('');
+    setPassword('');
+  };
+
+  const handleLogin = async () => {
     if (email !== '' && password !== '') {
-      console.log('login started');
-      login(email, password).then(() => console.log('login done'));
+      setIsLoading(true);
+      const isLoginSuccessful = await login(email, password);
+      setIsLoading(false);
+      if (isLoginSuccessful) {
+        navigation.navigate('Home');
+      } else {
+        resetLoginForm();
+      }
     } else {
       setPasswordPlaceholder('Password cannot be empty');
       setEmailPlaceholder('Email cannot be empty');
@@ -51,7 +62,7 @@ const Login = ({navigation}) => {
           placeholderText={emailPlaceholder}
           iconType={'user'}
           keyboardType={'email-address'}
-          autoCapitaliza={'none'}
+          autoCapitalize={'none'}
           autoCorrect={false}
           onChangeText={(userEmail) => setEmail(userEmail)}
         />
