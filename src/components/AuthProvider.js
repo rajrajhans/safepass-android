@@ -1,7 +1,10 @@
 import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {Alert} from 'react-native';
-import {getLoginErrorMessage} from '../utils/errorHandlers';
+import {
+  getLoginErrorMessage,
+  getSignupErrorMessage,
+} from '../utils/errorHandlers';
 
 const AuthContext = createContext();
 export default AuthContext;
@@ -21,11 +24,19 @@ export const AuthProvider = ({children}) => {
     }
   }
 
-  async function signUp(email, password) {
+  async function signUp(email, password, name) {
     try {
-      await auth().createUserWithEmailAndPassword(email, password);
+      const res = await auth().createUserWithEmailAndPassword(email, password);
+      await res.user.updateProfile({
+        displayName: name,
+      });
+      setCurrentUser({displayName: name, ...currentUser});
+      return 1;
     } catch (e) {
-      console.log(e);
+      Alert.alert('Sign Up Error', getSignupErrorMessage(e.code), [
+        {text: 'OK', style: 'cancel'},
+      ]);
+      return 0;
     }
   }
 

@@ -44,9 +44,10 @@ const Signup = ({navigation}) => {
     ) {
       if (password === passwordConfirmation) {
         setIsLoading(true);
-        const isSignUpSuccessful = signUp(email, password, name);
+        const isSignUpSuccessful = await signUp(email, password, name);
         setIsLoading(false);
-        if (isSignUpSuccessful) {
+        if (isSignUpSuccessful === 1) {
+          console.log('navigating');
           navigation.navigate('Home');
         } else {
           resetSignupForm();

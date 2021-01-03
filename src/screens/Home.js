@@ -1,4 +1,4 @@
-import React, {Fragment, useContext} from 'react';
+import React, {Fragment, useContext, useEffect, useState} from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import AuthContext from '../components/AuthProvider';
 import {Button, Text} from 'react-native-elements';
@@ -6,7 +6,6 @@ import {LoadingContext} from '../components/LoadingProvider';
 
 const Home = () => {
   const {currentUser, signOut} = useContext(AuthContext);
-
   const {setIsLoading} = useContext(LoadingContext);
   async function handleSignOut() {
     setIsLoading(true);
