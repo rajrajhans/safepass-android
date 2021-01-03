@@ -33,7 +33,7 @@ const pages = [
       'SafePass encrypts your data using the Industry Standard AES Algorithm.',
   },
   {
-    backgroundColor: '#5509e5',
+    backgroundColor: '#4c06d7',
     image: (
       <Image
         style={{width: 350, height: 266}}
@@ -43,6 +43,18 @@ const pages = [
     title: 'Open Source & Customizable',
     subtitle:
       'Want to customize it to your needs? No Problem! The source code is available on GitHub.',
+  },
+  {
+    backgroundColor: '#5204ee',
+    image: (
+      <Image
+        style={{width: 390, height: 266}}
+        source={require('../assets/across_devices.png')}
+      />
+    ),
+    title: 'Access across all your devices',
+    subtitle:
+      'In addition to this Android app, SafePass also has a Web based client at safepass.rajrajhans.com',
   },
 ];
 
