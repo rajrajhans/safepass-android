@@ -15,6 +15,7 @@ import {Text} from 'react-native-elements';
 import Logo from '../assets/logo_hq.png';
 import AuthContext from '../components/AuthProvider';
 import {LoadingContext} from '../components/LoadingProvider';
+import facebookOAuthHandler from '../components/oAuthHandlers/facebookOAuthHandler';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -92,7 +93,11 @@ const Login = ({navigation}) => {
               btnType={'facebook'}
               color={'#4867aa'}
               backgroundColor={'#e6eaf4'}
-              onPress={() => {}}
+              onPress={() => {
+                facebookOAuthHandler().catch((e) => {
+                  console.log('Facebook OAuth Error -> ', e);
+                });
+              }}
             />
             <SocialButton
               btnType={'twitter'}
