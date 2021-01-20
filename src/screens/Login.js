@@ -48,6 +48,14 @@ const Login = ({navigation}) => {
     }
   };
 
+  const handleFacebookLogin = async () => {
+    setIsLoading(true);
+    await facebookOAuthHandler().catch((e) => {
+      console.log('Facebook OAuth Error -> ', e);
+    });
+    setIsLoading(false);
+  };
+
   return (
     <SafeAreaView>
       <ScrollView
@@ -94,8 +102,8 @@ const Login = ({navigation}) => {
               color={'#4867aa'}
               backgroundColor={'#e6eaf4'}
               onPress={() => {
-                facebookOAuthHandler().catch((e) => {
-                  console.log('Facebook OAuth Error -> ', e);
+                handleFacebookLogin().catch((e) => {
+                  console.log(e);
                 });
               }}
             />

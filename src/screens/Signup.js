@@ -16,6 +16,7 @@ import Logo from '../assets/logo_hq.png';
 import {LoadingContext} from '../components/LoadingProvider';
 import AuthContext from '../components/AuthProvider';
 import {getLoginErrorMessage} from '../utils/errorHandlers';
+import facebookOAuthHandler from '../components/oAuthHandlers/facebookOAuthHandler';
 
 const Signup = ({navigation}) => {
   const [name, setName] = useState('');
@@ -78,6 +79,14 @@ const Signup = ({navigation}) => {
           'Please make sure you have entered a valid name',
         );
     }
+  };
+
+  const handleFacebookSignup = async () => {
+    setIsLoading(true);
+    await facebookOAuthHandler().catch((e) => {
+      console.log('Facebook OAuth Error -> ', e);
+    });
+    setIsLoading(false);
   };
 
   return (
@@ -144,7 +153,11 @@ const Signup = ({navigation}) => {
               btnType={'facebook'}
               color={'#4867aa'}
               backgroundColor={'#e6eaf4'}
-              onPress={() => {}}
+              onPress={() => {
+                handleFacebookSignup().catch((e) => {
+                  console.log(e);
+                });
+              }}
             />
             <SocialButton
               btnType={'twitter'}
