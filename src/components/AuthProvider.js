@@ -1,16 +1,24 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {Alert} from 'react-native';
 import {
   getLoginErrorMessage,
   getSignupErrorMessage,
 } from '../utils/errorHandlers';
+import {GoogleSignin} from '@react-native-community/google-signin';
 
 const AuthContext = createContext();
 export default AuthContext;
 
 export const AuthProvider = ({children}) => {
   const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId:
+        '859093043262-51pul81u8gelesbhpm54obt1meq0ae9m.apps.googleusercontent.com',
+    });
+  }, []);
 
   async function login(email, password) {
     try {

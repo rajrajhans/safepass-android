@@ -13,6 +13,7 @@ import LoadingScreen from './src/screens/LoadingScreen';
 import FirstLaunchNavStack from './src/components/navigation/FirstLaunchNavStack';
 import NotLoggedInNavStack from './src/components/navigation/NotLoggedInNavStack';
 import LoggedInNavStack from './src/components/navigation/LoggedInNavStack';
+import {GoogleSignin} from '@react-native-community/google-signin';
 
 const App = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);

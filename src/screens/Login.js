@@ -16,6 +16,7 @@ import Logo from '../assets/logo_hq.png';
 import AuthContext from '../components/AuthProvider';
 import {LoadingContext} from '../components/LoadingProvider';
 import facebookOAuthHandler from '../components/oAuthHandlers/facebookOAuthHandler';
+import handleGoogleOAuth from '../components/oAuthHandlers/googleAuthHandler';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -53,6 +54,16 @@ const Login = ({navigation}) => {
     await facebookOAuthHandler().catch((e) => {
       console.log('Facebook OAuth Error -> ', e);
     });
+    setIsLoading(false);
+  };
+
+  const handleGoogleLogin = async () => {
+    setIsLoading(true);
+
+    await handleGoogleOAuth().catch((e) => {
+      console.log('Google OAuth Error -> ', e);
+    });
+
     setIsLoading(false);
   };
 
@@ -95,7 +106,11 @@ const Login = ({navigation}) => {
               btnType={'google'}
               color={'#de4d41'}
               backgroundColor={'#f5e7ea'}
-              onPress={() => {}}
+              onPress={() => {
+                handleGoogleLogin().catch((e) => {
+                  console.log(e);
+                });
+              }}
             />
             <SocialButton
               btnType={'facebook'}

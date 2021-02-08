@@ -17,6 +17,7 @@ import {LoadingContext} from '../components/LoadingProvider';
 import AuthContext from '../components/AuthProvider';
 import {getLoginErrorMessage} from '../utils/errorHandlers';
 import facebookOAuthHandler from '../components/oAuthHandlers/facebookOAuthHandler';
+import handleGoogleOAuth from '../components/oAuthHandlers/googleAuthHandler';
 
 const Signup = ({navigation}) => {
   const [name, setName] = useState('');
@@ -89,6 +90,16 @@ const Signup = ({navigation}) => {
     setIsLoading(false);
   };
 
+  const handleGoogleSignup = async () => {
+    setIsLoading(true);
+
+    await handleGoogleOAuth().catch((e) => {
+      console.log('Google OAuth Error -> ', e);
+    });
+
+    setIsLoading(false);
+  };
+
   return (
     <SafeAreaView>
       <ScrollView
@@ -147,7 +158,11 @@ const Signup = ({navigation}) => {
               btnType={'google'}
               color={'#de4d41'}
               backgroundColor={'#f5e7ea'}
-              onPress={() => {}}
+              onPress={() => {
+                handleGoogleSignup().catch((e) => {
+                  console.log(e);
+                });
+              }}
             />
             <SocialButton
               btnType={'facebook'}
