@@ -29,3 +29,9 @@ The Web Client is live and accessible [here](https://safepass.rajrajhans.com). V
 | Onboarding                              |  Sign In                              | Sign Up                           |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | ![](/docs/onboarding.gif) | ![](/docs/signin.jpg) | ![](/docs/signup.jpg) |
+
+### Features Implemented 
+
+- Email and Password Authentication using Firebase.
+- OAuth Integration using Google, Facebook, and Twitter as providers.
+- Onboarding Screens
