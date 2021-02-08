@@ -3,6 +3,7 @@
 .eslintrc.js
 .prettierrc.js
 
+*.keystore
 build/
 __tests__/
 *.pbxuser
