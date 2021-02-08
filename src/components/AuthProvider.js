@@ -1,4 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react';
+import {NativeModules} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {Alert} from 'react-native';
 import {
@@ -6,6 +7,8 @@ import {
   getSignupErrorMessage,
 } from '../utils/errorHandlers';
 import {GoogleSignin} from '@react-native-community/google-signin';
+
+const {RNTwitterSignIn} = NativeModules;
 
 const AuthContext = createContext();
 export default AuthContext;
@@ -18,6 +21,15 @@ export const AuthProvider = ({children}) => {
       webClientId:
         '859093043262-51pul81u8gelesbhpm54obt1meq0ae9m.apps.googleusercontent.com',
     });
+
+    RNTwitterSignIn.init(
+      'XZK7BFEa3valO3ksCOXfBB94m',
+      'AxHug5y1dk5vxS1HgjhjYtp1TFolHWeWBltCwbs448TGE6PEvj',
+    )
+      .then(() => console.log('Twitter SDK initialized'))
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
   async function login(email, password) {

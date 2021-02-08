@@ -17,6 +17,7 @@ import AuthContext from '../components/AuthProvider';
 import {LoadingContext} from '../components/LoadingProvider';
 import facebookOAuthHandler from '../components/oAuthHandlers/facebookOAuthHandler';
 import handleGoogleOAuth from '../components/oAuthHandlers/googleAuthHandler';
+import twitterOAuthHandler from '../components/oAuthHandlers/twitterOAuthHandler';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -62,6 +63,16 @@ const Login = ({navigation}) => {
 
     await handleGoogleOAuth().catch((e) => {
       console.log('Google OAuth Error -> ', e);
+    });
+
+    setIsLoading(false);
+  };
+
+  const handleTwitterLogin = async () => {
+    setIsLoading(true);
+
+    await twitterOAuthHandler().catch((e) => {
+      console.log(e);
     });
 
     setIsLoading(false);
@@ -126,7 +137,11 @@ const Login = ({navigation}) => {
               btnType={'twitter'}
               color={'#00aced'}
               backgroundColor={'#d5f1fb'}
-              onPress={() => {}}
+              onPress={() => {
+                handleTwitterLogin().catch((e) => {
+                  console.log(e);
+                });
+              }}
             />
           </View>
         </View>
