@@ -4,6 +4,7 @@
 .prettierrc.js
 
 *.keystore
+debug.keystore
 build/
 __tests__/
 *.pbxuser
