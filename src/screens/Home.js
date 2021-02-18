@@ -3,6 +3,7 @@ import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import AuthContext from '../components/AuthProvider';
 import {Button, Text} from 'react-native-elements';
 import {LoadingContext} from '../components/LoadingProvider';
+import PasswordList from '../components/PasswordList';
 
 const Home = () => {
   const {currentUser, signOut} = useContext(AuthContext);
@@ -19,6 +20,9 @@ const Home = () => {
         <Text h1 style={{color: 'white'}}>
           Hi, {currentUser.displayName}
         </Text>
+
+        <PasswordList currentUser={currentUser} />
+
         <Button title={'Sign Out'} onPress={handleSignOut} />
         <Text style={styles.welcome}>Welcome to React Native!</Text>
       </SafeAreaView>

@@ -30,7 +30,8 @@
     "react-native-screens": "^2.16.1",
     "react-native-splash-screen": "^3.2.0",
     "react-native-twitter-signin": "^1.1.1",
-    "react-native-vector-icons": "^7.1.0"
+    "react-native-vector-icons": "^7.1.0",
+    "sjcl": "^1.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
