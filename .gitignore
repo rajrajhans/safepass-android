@@ -53,3 +53,7 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+
+# Security Secrets
+src/utils/security/securityConfig.js
