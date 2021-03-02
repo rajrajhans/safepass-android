@@ -17,3 +17,5 @@ function decryptPasswordList(passwordList) {
     {},
   );
 }
+
+export default decryptPasswordList;

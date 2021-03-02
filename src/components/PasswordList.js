@@ -1,41 +1,48 @@
-import React, {useEffect, useState} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import React, {useContext, useEffect, useState} from 'react';
+import {Text, StyleSheet, FlatList} from 'react-native';
 import getPasswords from '../utils/database_apis/getPasswords';
+import {LoadingContext} from './LoadingProvider';
+import SinglePassword from './SinglePassword';
 
 const PasswordList = ({currentUser}) => {
   const [passwords, setPasswords] = useState(null);
   const [isPwdPending, setIsPwdPending] = useState(true);
+  const {setIsLoading} = useContext(LoadingContext);
 
   useEffect(() => {
     getPasswordsFromDB();
   }, []);
 
   function getPasswordsFromDB() {
+    setIsLoading(true);
     setIsPwdPending(true);
 
     getPasswords(currentUser.uid)
       .then((pwds) => {
-        console.log(pwds);
         let pwdArray = Object.keys(pwds).map((key) => [key, pwds[key]]);
         pwdArray = pwdArray.reverse();
+
         setPasswords(pwdArray);
         setIsPwdPending(false);
+        setIsLoading(false);
       })
       .catch((e) => {
         console.log(e);
+        // todo: handle error
+        setIsLoading(false);
       });
   }
 
   return (
     <>
-      <Text style={styles.text}>Hello from Pwd list</Text>
-
       {isPwdPending ? null : (
-        <>
-          {passwords.map((pwdTuple) => (
-            <Text>hi</Text>
-          ))}
-        </>
+        <FlatList
+          data={passwords}
+          renderItem={(pwdTuple) => (
+            <SinglePassword passwordTuple={pwdTuple.item} />
+          )}
+          keyExtractor={(item) => item[0]}
+        />
       )}
     </>
   );
