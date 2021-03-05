@@ -5,6 +5,7 @@ import {Button, Text} from 'react-native-elements';
 import {LoadingContext} from '../components/LoadingProvider';
 import PasswordList from '../components/home-screen/PasswordList';
 import TopBar from '../components/TopBar';
+import HomeIntro from '../components/home-screen/HomeIntro';
 
 const Home = () => {
   const {currentUser, signOut} = useContext(AuthContext);
@@ -19,9 +20,7 @@ const Home = () => {
     <Fragment>
       <TopBar />
       <SafeAreaView style={styles.container}>
-        <Text h1 style={{color: 'white'}}>
-          Hi, {currentUser.displayName}
-        </Text>
+        <HomeIntro userName={currentUser.displayName} />
 
         <PasswordList currentUser={currentUser} />
 
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3c0d99',
+    backgroundColor: '#eee',
   },
   welcome: {
     fontSize: 20,
