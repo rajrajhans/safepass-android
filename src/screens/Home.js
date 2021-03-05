@@ -4,6 +4,7 @@ import AuthContext from '../components/AuthProvider';
 import {Button, Text} from 'react-native-elements';
 import {LoadingContext} from '../components/LoadingProvider';
 import PasswordList from '../components/PasswordList';
+import TopBar from '../components/TopBar';
 
 const Home = () => {
   const {currentUser, signOut} = useContext(AuthContext);
@@ -16,6 +17,7 @@ const Home = () => {
 
   return (
     <Fragment>
+      <TopBar />
       <SafeAreaView style={styles.container}>
         <Text h1 style={{color: 'white'}}>
           Hi, {currentUser.displayName}
@@ -24,7 +26,6 @@ const Home = () => {
         <PasswordList currentUser={currentUser} />
 
         <Button title={'Sign Out'} onPress={handleSignOut} />
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
       </SafeAreaView>
     </Fragment>
   );

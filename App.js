@@ -14,6 +14,7 @@ import FirstLaunchNavStack from './src/components/navigation/FirstLaunchNavStack
 import NotLoggedInNavStack from './src/components/navigation/NotLoggedInNavStack';
 import LoggedInNavStack from './src/components/navigation/LoggedInNavStack';
 import {GoogleSignin} from '@react-native-community/google-signin';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
