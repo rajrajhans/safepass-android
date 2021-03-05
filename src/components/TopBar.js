@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Header, Text, Icon} from 'react-native-elements';
 import Logo from '../assets/logo_hq.png';
-import {Image, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native';
+import AuthContext from './AuthProvider';
+import {LoadingContext} from './LoadingProvider';
 
 const TopBar = () => {
   return (
@@ -27,11 +29,21 @@ const TopBarCenter = () => (
   </View>
 );
 
-const TopBarRight = () => (
-  <View style={styles.iconContainer}>
-    <Icon name={'sign-out'} type="font-awesome" color={'#3c0d99'} size={28} />
-  </View>
-);
+const TopBarRight = () => {
+  const {signOut} = useContext(AuthContext);
+  const {setIsLoading} = useContext(LoadingContext);
+  async function handleSignOut() {
+    setIsLoading(true);
+    await signOut();
+    setIsLoading(false);
+  }
+
+  return (
+    <TouchableOpacity style={styles.iconContainer} onPress={handleSignOut}>
+      <Icon name={'sign-out'} type="font-awesome" color={'#3c0d99'} size={28} />
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   logo: {
@@ -50,6 +62,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     height: 40,
     justifyContent: 'center',
+    paddingHorizontal: 5,
   },
 });
 

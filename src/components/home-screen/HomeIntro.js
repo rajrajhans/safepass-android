@@ -6,7 +6,7 @@ const HomeIntro = ({userName}) => {
   return (
     <View style={styles.container}>
       <Text h1 style={styles.helloText}>
-        Hello, {userName}
+        {userName}'s Vault
       </Text>
     </View>
   );

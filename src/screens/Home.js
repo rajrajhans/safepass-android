@@ -8,13 +8,8 @@ import TopBar from '../components/TopBar';
 import HomeIntro from '../components/home-screen/HomeIntro';
 
 const Home = () => {
-  const {currentUser, signOut} = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
   const {setIsLoading} = useContext(LoadingContext);
-  async function handleSignOut() {
-    setIsLoading(true);
-    await signOut();
-    setIsLoading(false);
-  }
 
   return (
     <Fragment>
@@ -23,8 +18,6 @@ const Home = () => {
         <HomeIntro userName={currentUser.displayName} />
 
         <PasswordList currentUser={currentUser} />
-
-        <Button title={'Sign Out'} onPress={handleSignOut} />
       </SafeAreaView>
     </Fragment>
   );
@@ -33,8 +26,6 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#eee',
   },
   welcome: {

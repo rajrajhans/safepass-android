@@ -33,15 +33,28 @@ const PasswordList = ({currentUser}) => {
       });
   }
 
+  // todo: if isPwdPending is true, then render a flatlist with singlepwdcomponents with shining loading effect
   return (
     <>
-      {isPwdPending ? null : (
+      {isPwdPending ? (
         <FlatList
           data={passwords}
           renderItem={(pwdTuple) => (
             <SinglePassword passwordTuple={pwdTuple.item} />
           )}
           keyExtractor={(item) => item[0]}
+          contentContainerStyle={styles.container}
+          style={styles.con}
+        />
+      ) : (
+        <FlatList
+          data={passwords}
+          renderItem={(pwdTuple) => (
+            <SinglePassword passwordTuple={pwdTuple.item} />
+          )}
+          keyExtractor={(item) => item[0]}
+          contentContainerStyle={styles.container}
+          style={styles.con}
         />
       )}
     </>
@@ -52,6 +65,13 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 30,
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  con: {
+    flex: 1,
   },
 });
 
