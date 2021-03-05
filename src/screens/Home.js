@@ -3,7 +3,7 @@ import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import AuthContext from '../components/AuthProvider';
 import {Button, Text} from 'react-native-elements';
 import {LoadingContext} from '../components/LoadingProvider';
-import PasswordList from '../components/PasswordList';
+import PasswordList from '../components/home-screen/PasswordList';
 import TopBar from '../components/TopBar';
 
 const Home = () => {

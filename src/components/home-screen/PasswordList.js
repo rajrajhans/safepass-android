@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Text, StyleSheet, FlatList} from 'react-native';
-import getPasswords from '../utils/database_apis/getPasswords';
-import {LoadingContext} from './LoadingProvider';
+import getPasswords from '../../utils/database_apis/getPasswords';
+import {LoadingContext} from '../LoadingProvider';
 import SinglePassword from './SinglePassword';
 
 const PasswordList = ({currentUser}) => {
