@@ -4,10 +4,14 @@ import getPasswords from '../../utils/database_apis/getPasswords';
 import {LoadingContext} from '../LoadingProvider';
 import SinglePassword from './SinglePassword';
 import HomeIntro from './HomeIntro';
+import ViewPasswordOverlay from './ViewPasswordOverlay';
 
 const PasswordList = ({currentUser}) => {
   const [passwords, setPasswords] = useState(null);
   const [isPwdPending, setIsPwdPending] = useState(true);
+  const [currentActivePwd, setCurrentActivePwd] = useState(null);
+  const [isViewActive, setIsViewActive] = useState(false);
+
   const {setIsLoading} = useContext(LoadingContext);
 
   useEffect(() => {
@@ -52,21 +56,34 @@ const PasswordList = ({currentUser}) => {
           ListHeaderComponentStyle={styles.headerStyles}
         />
       ) : (
-        <FlatList
-          data={passwords}
-          renderItem={(pwdTuple) => (
-            <SinglePassword passwordTuple={pwdTuple.item} />
-          )}
-          keyExtractor={(item) => item[0]}
-          contentContainerStyle={styles.container}
-          style={styles.con}
-          onRefresh={() => {
-            getPasswordsFromDB();
-          }}
-          refreshing={isPwdPending}
-          ListHeaderComponent={<HomeIntro />}
-          ListHeaderComponentStyle={styles.headerStyles}
-        />
+        <>
+          {currentActivePwd ? (
+            <ViewPasswordOverlay
+              isViewActive={isViewActive}
+              setIsViewActive={setIsViewActive}
+              singlePassword={currentActivePwd}
+            />
+          ) : null}
+          <FlatList
+            data={passwords}
+            renderItem={(pwdTuple) => (
+              <SinglePassword
+                passwordTuple={pwdTuple.item}
+                setCurrentActivePwd={setCurrentActivePwd}
+                setIsViewActive={setIsViewActive}
+              />
+            )}
+            keyExtractor={(item) => item[0]}
+            contentContainerStyle={styles.container}
+            style={styles.con}
+            onRefresh={() => {
+              getPasswordsFromDB();
+            }}
+            refreshing={isPwdPending}
+            ListHeaderComponent={<HomeIntro />}
+            ListHeaderComponentStyle={styles.headerStyles}
+          />
+        </>
       )}
     </>
   );

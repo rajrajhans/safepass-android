@@ -5,11 +5,21 @@ import Logo from '../../assets/logo_hq.png';
 import {windowWidth} from '../../utils/deviceDimensions';
 import {parseDate} from '../../utils/parseDate';
 
-const SinglePassword = ({passwordTuple}) => {
-  console.log('from SinglePassword.js', passwordTuple);
+const SinglePassword = ({
+  passwordTuple,
+  setCurrentActivePwd,
+  setIsViewActive,
+}) => {
+  console.log('from SinglePassword.js', passwordTuple[1].title);
+
+  const handleOpenPwdOverlay = () => {
+    setCurrentActivePwd(passwordTuple);
+    setIsViewActive(true);
+  };
+
   return (
     <View style={[styles.wrapper, {width: windowWidth}]}>
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={handleOpenPwdOverlay}>
         <View style={styles.pwdIconContainer}>
           <Image source={Logo} style={styles.pwdIcon} />
         </View>
