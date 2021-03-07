@@ -13,6 +13,10 @@ const TopBar = () => {
       centerComponent={<TopBarCenter />}
       rightComponent={<TopBarRight />}
       containerStyle={styles.container}
+      statusBarProps={{
+        animated: true,
+        backgroundColor: '#3c0d99',
+      }}
     />
   );
 };
