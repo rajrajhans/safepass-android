@@ -22,13 +22,15 @@ const SinglePassword = ({passwordTuple}) => {
             color={'#3c0d99'}
             name={'eye'}
             type={'feather'}
-            style={styles.icons}
+            style={styles.icon}
+            size={27}
           />
           <Icon
             color={'#3c0d99'}
             name={'edit-2'}
             type={'feather'}
-            style={styles.icons}
+            style={styles.icon}
+            size={27}
           />
         </View>
       </TouchableOpacity>
@@ -49,6 +51,8 @@ const styles = StyleSheet.create({
     width: '95%',
     backgroundColor: 'rgba(0,0,0,0.06)',
     padding: 12,
+    borderColor: '#777575',
+    borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 15,
   },
   pwdIconContainer: {
@@ -60,8 +64,9 @@ const styles = StyleSheet.create({
     width: 25,
   },
   pwdDetailsContainer: {
-    flex: 3,
+    flex: 4,
     justifyContent: 'center',
+    marginLeft: 14,
   },
   pwdName: {
     fontSize: 18,
@@ -71,11 +76,13 @@ const styles = StyleSheet.create({
     color: '#777575',
   },
   iconsContainer: {
+    flex: 2,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
+    backgroundColor: 'yellow',
   },
-  icons: {},
+  icon: {},
 });
 
 export default SinglePassword;

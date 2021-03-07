@@ -3,11 +3,11 @@ import {Text} from 'react-native-elements';
 import {StyleSheet, View} from 'react-native';
 import WavyHeader from './WavyHeader';
 
-const HomeIntro = ({userName}) => {
+const HomeIntro = () => {
   return (
     <View style={styles.container}>
       <Text h1 style={styles.helloText}>
-        {userName}'s Vault
+        Raj's Vault
       </Text>
       <WavyHeader />
     </View>
@@ -18,6 +18,7 @@ export default HomeIntro;
 
 const styles = StyleSheet.create({
   helloText: {
+    marginTop: 16,
     color: '#fff',
     marginLeft: 20,
   },

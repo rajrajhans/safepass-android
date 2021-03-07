@@ -1,5 +1,5 @@
 import React, {Fragment, useContext, useEffect, useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import AuthContext from '../components/AuthProvider';
 import {Button, Text} from 'react-native-elements';
 import {LoadingContext} from '../components/LoadingProvider';
@@ -14,11 +14,9 @@ const Home = () => {
   return (
     <Fragment>
       <TopBar />
-      <SafeAreaView style={styles.container}>
-        <HomeIntro userName={currentUser.displayName} />
-
+      <View style={styles.container}>
         <PasswordList currentUser={currentUser} />
-      </SafeAreaView>
+      </View>
     </Fragment>
   );
 };

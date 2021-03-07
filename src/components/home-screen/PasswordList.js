@@ -3,6 +3,7 @@ import {Text, StyleSheet, FlatList} from 'react-native';
 import getPasswords from '../../utils/database_apis/getPasswords';
 import {LoadingContext} from '../LoadingProvider';
 import SinglePassword from './SinglePassword';
+import HomeIntro from './HomeIntro';
 
 const PasswordList = ({currentUser}) => {
   const [passwords, setPasswords] = useState(null);
@@ -47,6 +48,8 @@ const PasswordList = ({currentUser}) => {
           keyExtractor={(item) => item[0]}
           contentContainerStyle={styles.container}
           style={styles.con}
+          ListHeaderComponent={<HomeIntro />}
+          ListHeaderComponentStyle={styles.headerStyles}
         />
       ) : (
         <FlatList
@@ -61,6 +64,8 @@ const PasswordList = ({currentUser}) => {
             getPasswordsFromDB();
           }}
           refreshing={isPwdPending}
+          ListHeaderComponent={<HomeIntro />}
+          ListHeaderComponentStyle={styles.headerStyles}
         />
       )}
     </>
@@ -73,12 +78,16 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   container: {
-    flex: 1,
     alignItems: 'center',
-    marginTop: '15%',
   },
-  con: {
+  con: {},
+  headerStyles: {
+    width: '100%',
+    height: '100%',
     flex: 1,
+    backgroundColor: '#3c0d99',
+    marginBottom: '15%',
+    paddingTop: '15%',
   },
 });
 
