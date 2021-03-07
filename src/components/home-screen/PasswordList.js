@@ -22,6 +22,8 @@ const PasswordList = ({currentUser}) => {
         let pwdArray = Object.keys(pwds).map((key) => [key, pwds[key]]);
         pwdArray = pwdArray.reverse();
 
+        console.log('\n\n\nFrom PasswordList. Fetched Pwds\n\n\n');
+
         setPasswords(pwdArray);
         setIsPwdPending(false);
         setIsLoading(false);
@@ -55,6 +57,10 @@ const PasswordList = ({currentUser}) => {
           keyExtractor={(item) => item[0]}
           contentContainerStyle={styles.container}
           style={styles.con}
+          onRefresh={() => {
+            getPasswordsFromDB();
+          }}
+          refreshing={isPwdPending}
         />
       )}
     </>

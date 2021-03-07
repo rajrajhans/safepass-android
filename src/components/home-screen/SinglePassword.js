@@ -6,7 +6,7 @@ import {windowWidth} from '../../utils/deviceDimensions';
 import {parseDate} from '../../utils/parseDate';
 
 const SinglePassword = ({passwordTuple}) => {
-  console.log(passwordTuple);
+  console.log('from SinglePassword.js', passwordTuple);
   return (
     <View style={[styles.wrapper, {width: windowWidth}]}>
       <TouchableOpacity style={styles.container}>
@@ -15,9 +15,7 @@ const SinglePassword = ({passwordTuple}) => {
         </View>
         <View style={styles.pwdDetailsContainer}>
           <Text style={styles.pwdName}>{passwordTuple[1].title}</Text>
-          <Text style={styles.pwdDate}>
-            {parseDate(passwordTuple[1].updatedAt)}
-          </Text>
+          <Text style={styles.pwdUsername}>{passwordTuple[1].username}</Text>
         </View>
         <View style={styles.iconsContainer}>
           <Icon
@@ -68,8 +66,9 @@ const styles = StyleSheet.create({
   pwdName: {
     fontSize: 18,
   },
-  pwdDate: {
+  pwdUsername: {
     fontSize: 12,
+    color: '#777575',
   },
   iconsContainer: {
     flexDirection: 'row',
